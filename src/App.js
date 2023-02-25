@@ -11,6 +11,7 @@ import Search from "./pages/search/Search";
 import Post from "./pages/post/Post";
 import Logo from "./components/Logo";
 import Edit from "./pages/edit/Edit";
+import ProtectedRoutes from "./context/ProtectedRoutes";
 
 function App() {
   return (
@@ -19,14 +20,16 @@ function App() {
         <Logo />
         <Navigation />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/styleguide" element={<Styleguide />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/profile/:name" element={<Profile />} />
-          <Route path="/post/:id" element={<Post />} />
-          <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/search" element={<Search />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/styleguide" element={<Styleguide />} />
+            <Route path="/profile/:name" element={<Profile />} />
+            <Route path="/post/:id" element={<Post />} />
+            <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/search" element={<Search />} />
+          </Route>
         </Routes>
       </Router>
     </AuthProvider>

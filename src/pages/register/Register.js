@@ -56,6 +56,7 @@ function Register() {
   }
   return (
     <Container>
+      <h1>Register</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {loginError && <span className="error">{loginError}</span>}
         <Form.Group className="mb-3" controlId="nameForm.ControlInput1">
@@ -105,6 +106,8 @@ function Register() {
           {submitting ? "Creating account.." : "Register"}
         </Button>
       </Form>
+      <p>Already have an account?</p>
+      <a href="/login">Log in</a>
     </Container>
   );
 }

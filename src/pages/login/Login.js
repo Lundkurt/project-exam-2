@@ -35,7 +35,8 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const [setAuth] = useContext(AuthContext);
+  // eslint-disable-next-line
+  const [auth, setAuth] = useContext(AuthContext);
 
   async function onSubmit(data) {
     setSubmitting(true);
@@ -57,6 +58,7 @@ function Login() {
 
   return (
     <Container>
+      <h1>Login</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {loginError && <span className="error">{loginError}</span>}
         <Form.Group
@@ -91,6 +93,8 @@ function Login() {
           {submitting ? "Logging in.." : "Log in"}
         </Button>
       </Form>
+      <p>New member?</p>
+      <a href="/register">Register</a>
     </Container>
   );
 }
