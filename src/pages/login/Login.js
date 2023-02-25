@@ -52,7 +52,7 @@ function Login() {
       setLoginError(error.toString());
     } finally {
       setSubmitting(false);
-      history("/");
+      history("/home");
     }
   }
 
