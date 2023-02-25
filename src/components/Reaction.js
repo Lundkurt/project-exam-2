@@ -1,26 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import AuthContext from "../context/AuthProvider";
 import useAxios from "../context/hooks/useAxios";
 
 function Reaction(post) {
-  const [postData, setPostData] = useState(post.post);
-  const auth = useContext(AuthContext);
-  const [emoji, setEmoji] = useState("");
-  const [error, setError] = useState(false);
+  const [postData] = useState(post.post);
   const [reacted, setReacted] = useState(false);
   const [count, setCount] = useState("");
   const http = useAxios();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     heartCount();
-  }, [post]);
+    // eslint-disable-next-line
+  }, []);
 
   function heartCount() {
     const data = postData.reactions;

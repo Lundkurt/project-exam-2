@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const url = BASE_URL + "auth/register";
@@ -57,6 +57,7 @@ function Register() {
   return (
     <Container>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        {loginError && <span className="error">{loginError}</span>}
         <Form.Group className="mb-3" controlId="nameForm.ControlInput1">
           <Form.Control
             {...register("name")}
@@ -65,6 +66,7 @@ function Register() {
             placeholder="Username"
             aria-describedby="userHelp"
           />
+          {errors.name && <span className="error">{errors.name.message}</span>}
           <Form.Text id="userHelp" muted>
             Username must not contain puntuation symbols apart from underscore
           </Form.Text>
@@ -77,6 +79,9 @@ function Register() {
             placeholder="Email@stud.noroff.no"
             aria-describedby="emailHelp"
           />
+          {errors.email && (
+            <span className="error">{errors.email.message}</span>
+          )}
           <Form.Text id="emailHelp" muted>
             Your email must end with @stuf.noroff.no or @noroff.no
           </Form.Text>
@@ -89,6 +94,9 @@ function Register() {
             placeholder="password"
             aria-describedby="passwordHelp"
           />
+          {errors.password && (
+            <span className="error">{errors.password.message}</span>
+          )}
           <Form.Text id="passwordHelp" muted>
             Password must be atleast 8 characters
           </Form.Text>
