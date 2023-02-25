@@ -57,6 +57,9 @@ function CreatePost({ onUpdate }) {
             type="text"
             placeholder="Title.."
           />
+          {errors.title && (
+            <span className="error">{errors.title.message}</span>
+          )}
         </Form.Group>
         <Form.Group className="mb-3" controlId="bodyfield">
           <Form.Label>Content</Form.Label>

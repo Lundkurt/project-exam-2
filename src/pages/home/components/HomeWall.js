@@ -42,6 +42,7 @@ function HomeWall({ update }) {
       }
       getPosts();
     },
+    // eslint-disable-next-line
     [update]
   );
 

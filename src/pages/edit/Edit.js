@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import React, { useContext, useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
@@ -38,7 +38,6 @@ function Edit() {
           `posts/${id}?_author=true&_reactions=true&_comments=true`
         );
         setPost(response.data);
-        console.log(response.data);
         if (auth[0].name !== response.data.author.name) {
           history(`/post/${id}`);
         }
@@ -50,12 +49,12 @@ function Edit() {
       }
     }
     getPost();
+    // eslint-disable-next-line
   }, []);
 
   async function onPostSubmit(data) {
     console.log("hello");
     setSubmitting(true);
-    console.log(data);
 
     data.tags = data.tags.split(" ");
 
@@ -74,7 +73,7 @@ function Edit() {
     const confirm = window.confirm("Are you sure you want to Delete?");
     if (confirm) {
       try {
-        const del = await http.delete(`posts/${id}`);
+        await http.delete(`posts/${id}`);
       } catch (error) {
         console.log(error);
       } finally {
@@ -118,6 +117,9 @@ function Edit() {
               placeholder="Title, you need this one"
               defaultValue={post.title}
             />
+            {errors.title && (
+              <span className="error">{errors.title.message}</span>
+            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="bodyfield">
             <Form.Control

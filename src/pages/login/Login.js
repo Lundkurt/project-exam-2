@@ -35,7 +35,7 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const [auth, setAuth] = useContext(AuthContext);
+  const [setAuth] = useContext(AuthContext);
 
   async function onSubmit(data) {
     setSubmitting(true);
@@ -58,6 +58,7 @@ function Login() {
   return (
     <Container>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        {loginError && <span className="error">{loginError}</span>}
         <Form.Group
           {...register("email")}
           className="mb-3"
@@ -68,6 +69,9 @@ function Login() {
             type="email"
             placeholder="email@stud.noroff.no"
           />
+          {errors.email && (
+            <span className="error">{errors.email.message}</span>
+          )}
         </Form.Group>
         <Form.Group
           {...register("password")}
@@ -79,6 +83,9 @@ function Login() {
             type="password"
             placeholder="Password"
           />
+          {errors.password && (
+            <span className="error">{errors.email.password}</span>
+          )}
         </Form.Group>
         <Button variant="primary" type="submit">
           {submitting ? "Logging in.." : "Log in"}

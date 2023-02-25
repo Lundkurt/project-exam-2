@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import useAxios from "../../context/hooks/useAxios";
 
 function Search() {
@@ -32,6 +32,7 @@ function Search() {
       }
     }
     getReq();
+    // eslint-disable-next-line
   }, []);
 
   const handleSearchQueryChange = (event) => {

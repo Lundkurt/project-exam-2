@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import React, { useContext, useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
@@ -23,12 +23,7 @@ function Post() {
   const [submitting, setSubmitting] = useState(false);
   const auth = useContext(AuthContext);
   const http = useAxios();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -48,6 +43,7 @@ function Post() {
       }
     }
     getPost();
+    // eslint-disable-next-line
   }, []);
 
   async function onSubmit(data) {
@@ -100,7 +96,11 @@ function Post() {
                 placeholder="Comment something useful.."
               />
             </Form.Group>
-            <Button className="post-arrow" variant="primary" type="submit">
+            <Button
+              className={submitting ? "post-arrow-send" : "post-arrow"}
+              variant="primary"
+              type="submit"
+            >
               <img src={arrow} alt="Send" />
             </Button>
           </Form>

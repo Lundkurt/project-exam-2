@@ -3,7 +3,7 @@ import AuthContext from "../../../context/AuthProvider";
 import useAxios from "../../../context/hooks/useAxios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Collapse from "react-bootstrap/Collapse";
 import { useForm } from "react-hook-form";
@@ -33,6 +33,7 @@ function ProfileBoxLarge(name) {
       }
     }
     getProfile(name.name);
+    // eslint-disable-next-line
   }, []);
 
   function logOut() {
