@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../context/AuthProvider";
 import useAxios from "../context/hooks/useAxios";
 import Button from "react-bootstrap/Button";
@@ -6,25 +6,18 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Collapse from "react-bootstrap/Collapse";
 import Follow from "./Follow";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import Reaction from "./Reaction";
-import { Row } from "react-bootstrap";
 import arrow from "../images/arrow.svg";
 
 function CreatePostCard(post, isFollowing) {
   const [submitting, setSubmitting] = useState(false);
-  const [following, setIsFollowing] = useState(isFollowing);
+  const [following] = useState(isFollowing);
   const [open, setOpen] = useState(false);
   const [comments, setComments] = useState(post.post.comments);
   const auth = useContext(AuthContext);
   const http = useAxios();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   async function onSubmit(data) {
     console.log(data);
@@ -105,7 +98,7 @@ function CreatePostCard(post, isFollowing) {
                   />
                 </Form.Group>
                 <Button
-                  className="post-arrow"
+                  className={submitting ? "post-arrow-send" : "post-arrow"}
                   data-attr={post.post.id}
                   variant="primary"
                   type="submit"

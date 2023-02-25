@@ -1,16 +1,10 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import AuthContext from "../context/AuthProvider";
 import useAxios from "../context/hooks/useAxios";
 
 function Follow({ name, following }) {
   const [isFollowing, setIsFollowing] = useState(following);
   const http = useAxios();
-  let follow = "follow";
-
-  if (isFollowing) {
-    follow = "unfollow";
-  }
 
   const followHandle = async (user) => {
     try {

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import Nav from "react-bootstrap/Nav";
-import { useNavigate } from "react-router-dom";
+
 import AuthContext from "../context/AuthProvider";
 import logo from "../images/logo.svg";
 
 function Navigation() {
-  const [auth, setAuth] = useContext(AuthContext);
+  const [auth] = useContext(AuthContext);
 
   return (
     <Nav className="justify-content-center" activeKey="/home">
