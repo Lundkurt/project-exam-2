@@ -21,9 +21,9 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/styleguide" element={<Styleguide />} />
             <Route path="/profile/:name" element={<Profile />} />
             <Route path="/post/:id" element={<Post />} />

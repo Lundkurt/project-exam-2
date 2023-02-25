@@ -5,7 +5,7 @@ import logo from "../images/logo.svg";
 function Logo() {
   return (
     <div>
-      <Nav.Link href="/">
+      <Nav.Link href="/home">
         <img className="page-logo" src={logo} alt="Logo" />
       </Nav.Link>
     </div>

@@ -17,7 +17,7 @@ function Navigation() {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/">
+            <Nav.Link href="/home">
               <img className="nav-home" src={logo} alt="home-icon" />
             </Nav.Link>
           </Nav.Item>
