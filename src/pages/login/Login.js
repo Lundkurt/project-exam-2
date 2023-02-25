@@ -47,12 +47,12 @@ function Login() {
       const response = await axios.post(url, data);
       console.log("reponse", response.data);
       setAuth(response.data);
-      history("/");
     } catch (error) {
       console.log("error", error);
       setLoginError(error.toString());
     } finally {
       setSubmitting(false);
+      history("/");
     }
   }
 
