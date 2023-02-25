@@ -1,0 +1,92 @@
+.card {
+  background-color: $container-color;
+  width: 90% !important;
+  margin: auto;
+
+  &-header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  &-footer {
+  }
+}
+
+.card-footer form {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+.post {
+  &-avatar {
+    height: 60px;
+    width: 60px;
+  }
+  &-date {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
+  &-comment-user {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    width: 100%;
+  }
+  &-comment-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &-arrow {
+    background: none !important;
+    border: none !important;
+    height: 38px;
+    padding: 0 0 0 10px;
+  }
+}
+
+.reaction-btn {
+  background: none !important;
+  border: none !important;
+  font-size: 1.2rem;
+}
+
+.collapse {
+  margin-top: 8px;
+  &-btn {
+    background: none !important;
+    border: none !important;
+    text-decoration: underline;
+  }
+}
+
+.follow-btn {
+  color: black;
+  background-color: $primary-color;
+  border: none;
+  width: 80px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 3px 6px;
+}
+
+.comment-avatar {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 7px;
+}

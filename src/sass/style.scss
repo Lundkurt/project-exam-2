@@ -1,0 +1,13 @@
+$background-color: #242424;
+$container-color: #3e3e3e;
+$primary-color: #ff6f00;
+$white: #ffffff;
+$border-radius: 20px;
+
+@import "~bootstrap/scss/bootstrap";
+@import "partials/layout";
+@import "partials/typography";
+@import "partials/styleguide";
+@import "partials/posts";
+@import "partials/profile";
+@import "partials/search";

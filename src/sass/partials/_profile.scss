@@ -1,0 +1,35 @@
+//desk sidebar version
+.sidebar-avatar {
+  height: 140px;
+  width: 140px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sidebar-banner {
+  height: 170px;
+  object-fit: cover;
+}
+
+.sidebar-title {
+  text-align: center;
+}
+
+//profile
+
+.profile {
+  width: 90%;
+  &-avatar {
+    height: 150px;
+    width: 150px;
+  }
+  &-title {
+    text-align: left;
+  }
+  &-text {
+    text-align: left;
+    margin-bottom: 4px;
+  }
+}
