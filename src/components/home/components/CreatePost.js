@@ -48,7 +48,8 @@ function CreatePost({ onUpdate }) {
   }
 
   return (
-    <Container>
+    <Container className="create-post">
+      <h2>Create a post</h2>
       <Form onSubmit={handleSubmit(onPostSubmit)}>
         <Form.Group className="mb-3" controlId="titlefield">
           <Form.Label>Title</Form.Label>
@@ -93,26 +94,30 @@ function CreatePost({ onUpdate }) {
             </Form.Group>
           </div>
         </Collapse>
-        <Button variant="primary" type="submit">
-          {submitting ? "Posting.." : "Post"}
-        </Button>
+        <div className="d-flex justify-content-between">
+          <div>
+            <Button
+              className="collapse-btn image-btn"
+              onClick={() => setMediaOpen(!mediaOpen)}
+              aria-controls="posting-media"
+              aria-expanded={mediaOpen}
+            >
+              <img className="image-btn-block" src={imgbtn} alt="Media" />
+            </Button>
+            <Button
+              className="collapse-btn image-btn"
+              onClick={() => setTagOpen(!tagOpen)}
+              aria-controls="posting-tags"
+              aria-expanded={tagOpen}
+            >
+              <img className="image-btn-block" src={tagbtn} alt="Media" />
+            </Button>
+          </div>
+          <Button className="btn-primary" type="submit">
+            {submitting ? "Posting.." : "Post"}
+          </Button>
+        </div>
       </Form>
-      <Button
-        className="collapse-btn"
-        onClick={() => setMediaOpen(!mediaOpen)}
-        aria-controls="posting-media"
-        aria-expanded={mediaOpen}
-      >
-        <img src={imgbtn} alt="Media" />
-      </Button>
-      <Button
-        className="collapse-btn"
-        onClick={() => setTagOpen(!tagOpen)}
-        aria-controls="posting-tags"
-        aria-expanded={tagOpen}
-      >
-        <img src={tagbtn} alt="Media" />
-      </Button>
     </Container>
   );
 }

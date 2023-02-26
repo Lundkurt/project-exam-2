@@ -21,6 +21,27 @@
   border: 1px solid black;
 }
 
+.colorblock-primary {
+  background-color: $primary-color;
+}
+.colorblock-second {
+  background-color: $white;
+}
+.colorblock-third {
+  background-color: $background-color;
+}
+.colorblock-fourth {
+  background-color: $container-color;
+}
+
 .styleguide-h {
   color: white;
+}
+
+.follow-btn-show {
+  color: black;
+  background-color: $primary-color;
+  border: none;
+  width: 80px;
+  padding: 3px 6px;
 }

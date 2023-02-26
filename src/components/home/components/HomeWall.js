@@ -7,10 +7,10 @@ function HomeWall({ update }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [following, setFollowing] = useState({});
+  const [following, setFollowing] = useState([]);
 
   const http = useAxios();
-  const auth = useContext(AuthContext);
+  const [auth] = useContext(AuthContext);
 
   useEffect(
     function () {
@@ -26,9 +26,7 @@ function HomeWall({ update }) {
           setPosts(lessPosts);
 
           //Following
-          const fol = await http.get(
-            `profiles/${auth[0].name}?_following=true`
-          );
+          const fol = await http.get(`profiles/${auth.name}?_following=true`);
           const followingList = [];
           fol.data.following?.forEach((data) => {
             followingList.push(data.name);
@@ -56,6 +54,7 @@ function HomeWall({ update }) {
 
   return (
     <div className="card-wrap">
+      <h2 className="text-align-center">Post feed</h2>
       {posts.map((post) => {
         const isFollowing = following.includes(post.author.name);
         return (

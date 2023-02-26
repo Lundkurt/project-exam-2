@@ -10,13 +10,12 @@ import Logo from "./components/Logo";
 import Media from "./components/Media";
 import Typography from "./components/Typography";
 import logo from "./../../images/logo.svg";
+import useDocumentTitle from "../../context/hooks/useDocumentTitle";
 
 function Styleguide() {
+  useDocumentTitle("Styleguide");
   return (
     <div className="styleguide-nav">
-      <a href="/">
-        <img src={logo} alt="Logo" />
-      </a>{" "}
       <h1 className="styleguide-h">Styleguide</h1>
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>

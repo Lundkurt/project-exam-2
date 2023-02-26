@@ -1,11 +1,26 @@
 //desk sidebar version
+.sidebar,
+.container-placeholder {
+  width: 350px;
+}
+.container-placeholder {
+  margin-top: 100px;
+}
+.container-placeholder-content {
+  background-color: $container-color;
+  border-radius: $border-radius;
+  height: 300px;
+  margin: 0px auto;
+  width: 90%;
+}
 .sidebar-avatar {
-  height: 140px;
-  width: 140px;
+  height: 100px;
+  width: 100px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  object-fit: cover;
 }
 
 .sidebar-banner {
@@ -15,6 +30,25 @@
 
 .sidebar-title {
   text-align: center;
+}
+
+.list-group {
+  width: 90%;
+  margin: 30px auto;
+}
+
+.list-group-item {
+  background-color: $container-color;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+}
+
+.list-avatar {
+  height: 60px;
+  width: 60px;
+  border-radius: 20px;
 }
 
 //profile

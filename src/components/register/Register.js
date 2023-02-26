@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useDocumentTitle from "../../context/hooks/useDocumentTitle";
 
 const url = BASE_URL + "auth/register";
 const schema = yup.object().shape({
@@ -24,6 +25,7 @@ const schema = yup.object().shape({
 });
 
 function Register() {
+  useDocumentTitle("Register");
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
 
@@ -56,7 +58,8 @@ function Register() {
   }
   return (
     <Container>
-      <h1>Register</h1>
+      <h1>Welcome to HiveMind</h1>
+      <h4>Register your account</h4>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {loginError && <span className="error">{loginError}</span>}
         <Form.Group className="mb-3" controlId="nameForm.ControlInput1">
@@ -106,7 +109,7 @@ function Register() {
           {submitting ? "Creating account.." : "Register"}
         </Button>
       </Form>
-      <p>Already have an account?</p>
+      <p className="p-less-margin">Already have an account?</p>
       <a href="/login">Log in</a>
     </Container>
   );

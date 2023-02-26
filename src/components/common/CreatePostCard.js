@@ -9,15 +9,18 @@ import Follow from "./Follow";
 import { useForm } from "react-hook-form";
 import Reaction from "./Reaction";
 import arrow from "../../images/arrow.svg";
+import avatar from "../../images/avatar-placeholder.png";
+import commentIcon from "../../images/comment.svg";
 
-function CreatePostCard(post, isFollowing) {
+function CreatePostCard({ post, isFollowing }) {
   const [submitting, setSubmitting] = useState(false);
   const [following] = useState(isFollowing);
   const [open, setOpen] = useState(false);
-  const [comments, setComments] = useState(post.post.comments);
-  const auth = useContext(AuthContext);
+  const [comments, setComments] = useState(post.comments);
+  const [auth] = useContext(AuthContext);
   const http = useAxios();
   const { register, handleSubmit } = useForm();
+  const placeholder = avatar;
 
   async function onSubmit(data) {
     console.log(data);
@@ -40,46 +43,49 @@ function CreatePostCard(post, isFollowing) {
   return (
     <Card className="post">
       <Card.Header>
-        <Card.Img className="post-avatar" src={post.post.author?.avatar} />
+        <Card.Img
+          className="post-avatar"
+          src={post.author?.avatar || placeholder}
+        />
         <div>
-          <Card.Link href={`/profile/${post.post.author.name}`}>
-            {post.post.author.name}
+          <Card.Link href={`/profile/${post.author.name}`}>
+            {post.author.name}
           </Card.Link>
           <Card.Text className="post-date">
-            {post.post.created.slice(0, 10)}
+            {post.created.slice(0, 10)}
           </Card.Text>
-          <Card.Link href={`/post/${post.post.id}`}>Visit post</Card.Link>
-          {auth[0].name === post.post.author.name && (
-            <Card.Link href={`/edit/${post.post.id}`}>Edit</Card.Link>
+          <Card.Link href={`/post/${post.id}`}>Visit post</Card.Link>
+          {auth.name === post.author.name && (
+            <Card.Link href={`/edit/${post.id}`}>Edit</Card.Link>
           )}
         </div>
-        {auth[0].name !== post.post.author.name && (
-          <Follow name={post.post.author.name} isFollowing={following} />
+        {auth.name !== post.author.name && (
+          <Follow name={post.author.name} isFollowing={following} />
         )}
       </Card.Header>
       <Card.Body>
-        <Card.Img src={post.post.media} />
-        <Card.Title>{post.post.title}</Card.Title>
-        <Card.Text>{post.post.body}</Card.Text>
+        <Card.Img src={post.media} />
+        <Card.Title>{post.title}</Card.Title>
+        <Card.Text>{post.body}</Card.Text>
       </Card.Body>
       <Card.Footer>
         <div className="post-comment-buttons">
           <Button
             className="collapse-btn"
             onClick={() => setOpen(!open)}
-            aria-controls={post.post.id}
+            aria-controls={post.id}
             aria-expanded={open}
           >
-            {post.post.comments.length}{" "}
-            {post.post.comments.length === 1 ? "comment" : "comments"}
+            <img src={commentIcon} alt="Comments" />
+            {post.comments.length}{" "}
           </Button>
 
-          <Reaction post={post.post} />
+          <Reaction post={post} />
         </div>
         <Collapse in={open}>
-          <div id={post.post.id}>
+          <div id={post.id}>
             <div className="post-comment-user">
-              <Card.Img className="comment-avatar" src={auth[0]?.avatar} />
+              <Card.Img className="comment-avatar" src={auth?.avatar} />
 
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3">
@@ -92,15 +98,10 @@ function CreatePostCard(post, isFollowing) {
                   />
                 </Form.Group>
                 <Form.Group controlId="url" className="display-none">
-                  <Form.Control
-                    {...register("id")}
-                    defaultValue={post.post.id}
-                  />
+                  <Form.Control {...register("id")} defaultValue={post.id} />
                 </Form.Group>
                 <Button
                   className={submitting ? "post-arrow-send" : "post-arrow"}
-                  data-attr={post.post.id}
-                  variant="primary"
                   type="submit"
                 >
                   <img src={arrow} alt="Send" />

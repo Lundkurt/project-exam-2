@@ -17,7 +17,6 @@ function Reaction(post) {
 
   function heartCount() {
     const data = postData.reactions;
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
       if (data[i]?.symbol === "🧡") {
         setCount(data[i].count);

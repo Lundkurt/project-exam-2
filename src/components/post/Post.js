@@ -10,6 +10,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import arrow from "../../images/arrow.svg";
 import Reaction from "../common/Reaction";
+import placeholder from "../../images/avatar-placeholder.png";
+import useDocumentTitle from "../../context/hooks/useDocumentTitle";
 
 const schema = yup.object().shape({
   body: yup.string().required("Can't be empty, can it?"),
@@ -26,7 +28,7 @@ function Post() {
   const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
   });
-
+  useDocumentTitle(post.title);
   useEffect(() => {
     async function getPost() {
       try {
@@ -72,7 +74,10 @@ function Post() {
   return (
     <Card>
       <Card.Header>
-        <Card.Img className="post-avatar" src={post.author?.avatar} />
+        <Card.Img
+          className="post-avatar"
+          src={post.author?.avatar || placeholder}
+        />
         <Card.Link href={`/profile/${post.author.name}`}>
           {post.author.name}
         </Card.Link>
@@ -88,7 +93,7 @@ function Post() {
         <div className="post-comment-user">
           <Card.Img className="comment-avatar" src={auth[0]?.avatar} />
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group className="">
+            <Form.Group>
               <Form.Control
                 {...register("body", { required: true })}
                 name="body"

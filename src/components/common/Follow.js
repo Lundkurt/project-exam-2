@@ -2,29 +2,25 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import useAxios from "../../context/hooks/useAxios";
 
-function Follow({ name, following }) {
-  const [isFollowing, setIsFollowing] = useState(following);
+function Follow({ name, isFollowing }) {
+  const [following, setFollowing] = useState(isFollowing);
   const http = useAxios();
 
   const followHandle = async (user) => {
     try {
       const response = await http.put(
-        `profiles/${user}/${isFollowing ? "unfollow" : "follow"}`
+        `profiles/${user}/${following ? "unfollow" : "follow"}`
       );
       console.log(response.data);
-      setIsFollowing(!isFollowing);
+      setFollowing(!following);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <Button
-      onClick={() => followHandle(name)}
-      className="follow-btn"
-      variant="primary"
-    >
-      {isFollowing ? "unfollow" : "+follow"}
+    <Button onClick={() => followHandle(name)} className="follow-btn">
+      {following ? "unfollow" : "+follow"}
     </Button>
   );
 }

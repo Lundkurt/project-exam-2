@@ -7,27 +7,35 @@ body {
 a {
   color: $white !important;
 }
-
-a.active {
-  background-color: $primary-color !important;
-  color: black !important;
-}
-
+//nav
 .nav-home {
   height: 25px;
   width: 25px;
 }
 
 .nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  border-top: 1px $primary-color;
-  border-left: 1px $primary-color;
-  border-right: 1px $primary-color;
-  background-color: $background-color;
+  @media screen and (max-width: 1212px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    border-top: 1px $primary-color !important;
+    border-left: 1px $primary-color;
+    border-right: 1px $primary-color;
+    background-color: $primary-color;
+    color: black;
+  }
+  @media screen and (min-width: 1213px) {
+    margin-top: 40px;
+  }
+}
+
+.nav-icons {
+  font-size: 1.3rem;
+
+  @media screen and (min-width: 1213px) {
+  }
 }
 
 .page-logo {
@@ -35,13 +43,29 @@ a.active {
   height: 100px;
   width: 100px;
 }
-
+//children container
+.layout-children {
+  width: 100%;
+  @media screen and (min-width: 769px) {
+    margin-top: 120px;
+  }
+  @media screen and (min-width: 1212px) {
+    width: 50%;
+  }
+}
+//else container
 .container {
   background-color: $container-color;
   border-radius: 20px;
-  padding: 20px;
   max-width: 90%;
   margin-top: 20px;
+  padding-bottom: 15px;
+}
+
+.create-post {
+  @media screen and (max-width: 1200px) {
+    max-width: 600px;
+  }
 }
 
 .postlist-container {
@@ -71,12 +95,44 @@ a.active {
   padding: 10px;
 }
 
-.btn {
+.form-control {
+  border-radius: 15px;
+  color: white;
   background-color: $background-color;
-  border-color: $primary-color;
+  border-color: rgba($color: #ffffff, $alpha: 0.5);
+}
+
+.btn {
   border-radius: 15px;
 }
 
-.form-control {
-  border-radius: 15px;
+.btn-primary {
+  color: white;
+  background-color: $background-color;
+  border-color: $primary-color;
+  &:hover {
+    @extend .btn-primary;
+    box-shadow: 5px 5px 3px rgba($color: $background-color, $alpha: 0.2);
+  }
+}
+
+.btn-warning {
+  background-color: $background-color;
+  border-color: #ff0000;
+}
+
+.image-btn {
+  &:hover {
+    background-color: rgba($color: $background-color, $alpha: 0.3) !important;
+  }
+}
+
+.image-btn-block {
+  height: 25px;
+  width: 25px;
+}
+
+.p-less-margin {
+  margin-bottom: 2px;
+  margin-top: 10px;
 }

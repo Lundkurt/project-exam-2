@@ -8,12 +8,15 @@ import AuthContext from "../../context/AuthProvider";
 import useAxios from "../../context/hooks/useAxios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import placeholder from "../../images/avatar-placeholder.png";
+import useDocumentTitle from "../../context/hooks/useDocumentTitle";
 
 const schema = yup.object().shape({
   body: yup.string().required("Can't be empty, can it?"),
 });
 
 function Edit() {
+  useDocumentTitle("Edit post");
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -91,62 +94,68 @@ function Edit() {
   }
 
   return (
-    <Card>
-      <Card.Header>
-        <Card.Img className="post-avatar" src={post.author?.avatar} />
-        <Card.Link href={`/profile/${post.author.name}`}>
-          {post.author.name}
-        </Card.Link>
-        <Card.Text>{post.created.slice(0, 10)}</Card.Text>
-      </Card.Header>
-      <Card.Body>
-        <Card.Img src={post.media} />
-        <Form onSubmit={handleSubmit(onPostSubmit)}>
-          <Form.Group controlId="url" className="mb-3">
-            <Form.Control
-              {...register("media")}
-              type="url"
-              defaultValue={post.media}
-              placeholder="Url for media"
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="titlefield">
-            <Form.Control
-              {...register("title")}
-              type="text"
-              placeholder="Title, you need this one"
-              defaultValue={post.title}
-            />
-            {errors.title && (
-              <span className="error">{errors.title.message}</span>
-            )}
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="bodyfield">
-            <Form.Control
-              {...register("body")}
-              type="textarea"
-              placeholder="Happy Editing!"
-              defaultValue={post.body}
-            />
-          </Form.Group>
-          <Form.Group controlId="tags" className="mb-3">
-            <Form.Control
-              {...register("tags")}
-              type="text"
-              defaultValue={post.tags}
-              placeholder="tags tag"
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            {submitting ? "Saving.." : "Save"}
+    <>
+      <h1 className="text-align-center">Edit post</h1>
+      <Card>
+        <Card.Header>
+          <Card.Img
+            className="post-avatar"
+            src={post.author?.avatar || placeholder}
+          />
+          <Card.Link href={`/profile/${post.author.name}`}>
+            {post.author.name}
+          </Card.Link>
+          <Card.Text>{post.created.slice(0, 10)}</Card.Text>
+        </Card.Header>
+        <Card.Body>
+          <Card.Img src={post.media} />
+          <Form onSubmit={handleSubmit(onPostSubmit)}>
+            <Form.Group controlId="url" className="mb-3">
+              <Form.Control
+                {...register("media")}
+                type="url"
+                defaultValue={post.media}
+                placeholder="Url for media"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="titlefield">
+              <Form.Control
+                {...register("title")}
+                type="text"
+                placeholder="Title, you need this one"
+                defaultValue={post.title}
+              />
+              {errors.title && (
+                <span className="error">{errors.title.message}</span>
+              )}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="bodyfield">
+              <Form.Control
+                {...register("body")}
+                type="textarea"
+                placeholder="Happy Editing!"
+                defaultValue={post.body}
+              />
+            </Form.Group>
+            <Form.Group controlId="tags" className="mb-3">
+              <Form.Control
+                {...register("tags")}
+                type="text"
+                defaultValue={post.tags}
+                placeholder="tags tag"
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              {submitting ? "Saving.." : "Save"}
+            </Button>
+          </Form>
+          <Button onClick={deletePost} variant="primary" type="submit">
+            Delete
           </Button>
-        </Form>
-        <Button onClick={deletePost} variant="primary" type="submit">
-          Delete
-        </Button>
-      </Card.Body>
-      <Card.Footer></Card.Footer>
-    </Card>
+        </Card.Body>
+        <Card.Footer></Card.Footer>
+      </Card>
+    </>
   );
 }
 

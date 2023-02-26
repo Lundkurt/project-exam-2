@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form } from "react-bootstrap";
 import useAxios from "../../context/hooks/useAxios";
+import useDocumentTitle from "../../context/hooks/useDocumentTitle";
+import placeholder from "../../images/avatar-placeholder.png";
 
 function Search() {
+  useDocumentTitle("Search");
   const [profilesData, setProfilesData] = useState([]);
   const [postsData, setPostsData] = useState([]);
   const [filterProfiles, setFilterProfiles] = useState(true);
@@ -21,9 +24,6 @@ function Search() {
 
         const posts = await http.get("posts?_author=true");
         setPostsData(posts.data);
-        console.log(posts.data);
-        console.log(filteredResults);
-        console.log(filteredProfiles);
       } catch (error) {
         console.log(error);
         setError(true);
@@ -39,21 +39,22 @@ function Search() {
     setSearchQuery(event.target.value);
   };
 
-  const filteredProfiles = profilesData;
+  const filteredProfiles = filterProfiles
+    ? profilesData.filter((profile) =>
+        profile.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
 
-  const filteredPosts = postsData;
+  const filteredPosts = filterPosts
+    ? postsData.filter((post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
 
-  console.log(filteredPosts);
-  const filteredResults = searchQuery
-    ? [
-        ...filteredProfiles.filter((profile) =>
-          profile.name.toLowerCase().includes(searchQuery.toLowerCase())
-        ),
-        ...filteredPosts.filter((post) =>
-          post.title.toLowerCase().includes(searchQuery.toLowerCase())
-        ),
-      ]
-    : [...filteredProfiles, ...filteredPosts];
+  const filteredResults = [
+    ...(filterProfiles ? filteredProfiles : []),
+    ...(filterPosts ? filteredPosts : []),
+  ];
 
   if (loading) {
     return <div>Loading..</div>;
@@ -65,30 +66,36 @@ function Search() {
 
   return (
     <>
-      <Form.Check
-        type="switch"
-        checked={filterProfiles}
-        onChange={() => setFilterProfiles(!filterProfiles)}
-        label="Profiles"
-      />
-      <Form.Check
-        type="switch"
-        checked={filterPosts}
-        onChange={() => setFilterPosts(!filterPosts)}
-        label="Posts"
-      />
-      <Form.Control
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchQueryChange}
-      />
+      <h1 className="text-align-center">Browse</h1>
+      <Card>
+        <div className="filter">
+          <Form.Check
+            type="switch"
+            checked={filterProfiles}
+            onChange={() => setFilterProfiles(!filterProfiles)}
+            label="Profiles"
+          />
+          <Form.Check
+            type="switch"
+            checked={filterPosts}
+            onChange={() => setFilterPosts(!filterPosts)}
+            label="Posts"
+          />
+          <Form.Control
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchQueryChange}
+            placeholder="Search.."
+          />
+        </div>
+      </Card>
       <div className="postlist-container">
         {filteredResults.map((results) => (
           <Card key={results.name || results.id}>
             <Card.Header>
               <Card.Img
                 className="post-avatar"
-                src={results?.avatar || results.author?.avatar}
+                src={results?.avatar || results.author?.avatar || placeholder}
               />
               <Card.Link
                 href={`/profile/${results.name || results.author.name}`}

@@ -3,15 +3,14 @@ import AuthContext from "../../../context/AuthProvider";
 import useAxios from "../../../context/hooks/useAxios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Col, Container, Row } from "react-bootstrap";
 
 function ProfileBox() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const http = useAxios();
-  const auth = useContext(AuthContext);
-  let userName = auth[0].name;
+  const [auth] = useContext(AuthContext);
+  let userName = auth.name;
   console.log(userName);
 
   useEffect(function () {
@@ -28,6 +27,7 @@ function ProfileBox() {
       }
     }
     getProfile(userName);
+    // eslint-disable-next-line
   }, []);
 
   if (loading) {
@@ -52,7 +52,9 @@ function ProfileBox() {
           </div>
         </div>
         <Card.Title className="sidebar-title">{user.name}</Card.Title>
-        <Button variant="primary">Profile</Button>
+        <Button href={`/profile/${userName}`} className="btn-primary">
+          Profile
+        </Button>
       </Card.Body>
     </Card>
   );

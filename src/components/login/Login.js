@@ -10,6 +10,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
+import useDocumentTitle from "../../context/hooks/useDocumentTitle";
 
 const url = BASE_URL + "auth/login";
 const schema = yup.object().shape({
@@ -24,6 +25,7 @@ const schema = yup.object().shape({
 });
 
 function Login() {
+  useDocumentTitle("Login");
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const history = useNavigate();

@@ -7,6 +7,7 @@ import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Collapse from "react-bootstrap/Collapse";
 import { useForm } from "react-hook-form";
+import placeholder from "../../../images/avatar-placeholder.png";
 
 function ProfileBoxLarge(name) {
   const [auth, setAuth] = useContext(AuthContext);
@@ -62,37 +63,48 @@ function ProfileBoxLarge(name) {
     <Card className="profile">
       <Card.Img className="profile-banner" variant="top" src={user.banner} />
       <Card.Body>
-        <div className="flex-row">
-          <Card.Img className="profile-avatar" src={user.avatar} />
+        <div className="flex-col d-md-flex justify-content-start gap-4">
+          <Card.Img
+            className="profile-avatar"
+            src={user?.avatar || placeholder}
+          />
           <div className="flex-col">
-            <Card.Title className="profile-title">{user.name}</Card.Title>
-            <Card.Text className="profile-text">{user.email}</Card.Text>
-          </div>
-          <div>
             <div className="flex-col">
-              <p>{user._count.posts}</p> <p>Posts</p>
+              <Card.Title className="profile-title">{user.name}</Card.Title>
+              <Card.Text className="profile-text">{user.email}</Card.Text>
             </div>
-            <div className="flex-col">
-              <p>{user._count.followers}</p> <p>Followers</p>
-            </div>
-            <div className="flex-col">
-              <p>{user._count.following}</p> <p>following</p>
+            <div className="d-flex gap-4">
+              <div className="flex-col">
+                <p className="p-less-margin">{user._count.posts}</p>{" "}
+                <p>Posts</p>
+              </div>
+              <div className="flex-col">
+                <p className="p-less-margin">{user._count.followers}</p>{" "}
+                <p>Followers</p>
+              </div>
+              <div className="flex-col">
+                <p className="p-less-margin">{user._count.following}</p>{" "}
+                <p>following</p>
+              </div>
             </div>
           </div>
         </div>
 
         {isAuth && (
           <>
-            <Button
-              onClick={() => setOpen(!open)}
-              aria-controls={user.id}
-              aria-expanded={open}
-            >
-              Edit Profile
-            </Button>
-            <Button variant="primary" onClick={logOut}>
-              Log out
-            </Button>
+            <div className="d-flex justify-content-between">
+              <Button
+                className="btn-primary"
+                onClick={() => setOpen(!open)}
+                aria-controls={user.id}
+                aria-expanded={open}
+              >
+                Edit Profile
+              </Button>
+              <Button className="btn-warning" onClick={logOut}>
+                Log out
+              </Button>
+            </div>
 
             <Collapse in={open}>
               <div id={user.name}>

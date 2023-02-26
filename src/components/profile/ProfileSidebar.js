@@ -4,10 +4,10 @@ import ProfileBox from "./components/ProfileBox";
 
 function ProfileSidebar() {
   return (
-    <>
+    <div className="sidebar">
       <ProfileBox />
       <FindProfiles />
-    </>
+    </div>
   );
 }
 
