@@ -9,7 +9,6 @@ import Interactive from "./components/Interactive";
 import Logo from "./components/Logo";
 import Media from "./components/Media";
 import Typography from "./components/Typography";
-import logo from "./../../images/logo.svg";
 import useDocumentTitle from "../../context/hooks/useDocumentTitle";
 
 function Styleguide() {

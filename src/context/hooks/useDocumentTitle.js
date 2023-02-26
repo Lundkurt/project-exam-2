@@ -13,6 +13,7 @@ function useDocumentTitle(title, prevailOnUnmount = false) {
         document.title = defaultTitle.current;
       }
     },
+    // eslint-disable-next-line
     []
   );
 }

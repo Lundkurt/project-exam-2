@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Nav from "react-bootstrap/Nav";
 import AuthContext from "../../context/AuthProvider";
-import logo from "../../images/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 
