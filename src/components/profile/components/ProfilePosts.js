@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CreatePostCard from "../../../components/CreatePostCard";
+import CreatePostCard from "../../common/CreatePostCard";
 import useAxios from "../../../context/hooks/useAxios";
 
 function ProfilePosts(name) {

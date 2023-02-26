@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import AuthContext from "../context/AuthProvider";
-import useAxios from "../context/hooks/useAxios";
+import AuthContext from "../../context/AuthProvider";
+import useAxios from "../../context/hooks/useAxios";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -8,7 +8,7 @@ import Collapse from "react-bootstrap/Collapse";
 import Follow from "./Follow";
 import { useForm } from "react-hook-form";
 import Reaction from "./Reaction";
-import arrow from "../images/arrow.svg";
+import arrow from "../../images/arrow.svg";
 
 function CreatePostCard(post, isFollowing) {
   const [submitting, setSubmitting] = useState(false);

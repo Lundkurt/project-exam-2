@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-import logo from "../images/logo.svg";
+import logo from "../../images/logo.svg";
 
 function Logo() {
   return (

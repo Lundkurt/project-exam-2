@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import Nav from "react-bootstrap/Nav";
-
-import AuthContext from "../context/AuthProvider";
-import logo from "../images/logo.svg";
+import AuthContext from "../../context/AuthProvider";
+import logo from "../../images/logo.svg";
 
 function Navigation() {
   const [auth] = useContext(AuthContext);

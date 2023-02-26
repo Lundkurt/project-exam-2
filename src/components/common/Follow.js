@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import useAxios from "../context/hooks/useAxios";
+import useAxios from "../../context/hooks/useAxios";
 
 function Follow({ name, following }) {
   const [isFollowing, setIsFollowing] = useState(following);

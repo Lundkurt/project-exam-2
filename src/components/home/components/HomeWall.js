@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/AuthProvider";
 import useAxios from "../../../context/hooks/useAxios";
-import CreatePostCard from "../../../components/CreatePostCard";
+import CreatePostCard from "../../common/CreatePostCard";
 
 function HomeWall({ update }) {
   const [posts, setPosts] = useState([]);

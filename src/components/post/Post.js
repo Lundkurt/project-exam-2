@@ -9,7 +9,7 @@ import useAxios from "../../context/hooks/useAxios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import arrow from "../../images/arrow.svg";
-import Reaction from "../../components/Reaction";
+import Reaction from "../common/Reaction";
 
 const schema = yup.object().shape({
   body: yup.string().required("Can't be empty, can it?"),

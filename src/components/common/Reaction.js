@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import useAxios from "../context/hooks/useAxios";
+import useAxios from "../../context/hooks/useAxios";
 
 function Reaction(post) {
   const [postData] = useState(post.post);

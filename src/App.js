@@ -1,16 +1,16 @@
 import "./sass/style.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Styleguide from "./pages/styleguide/Styleguide";
-import Navigation from "./components/Navigation";
-import Register from "./pages/register/Register";
-import Login from "./pages/login/Login";
+import Home from "./components/home/Home";
+import Styleguide from "./components/styleguide/Styleguide";
+import Navigation from "./components/layout/Navigation";
+import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 import { AuthProvider } from "./context/AuthProvider";
-import Profile from "./pages/profile/Profile";
-import Search from "./pages/search/Search";
-import Post from "./pages/post/Post";
-import Logo from "./components/Logo";
-import Edit from "./pages/edit/Edit";
+import Profile from "./components/profile/Profile";
+import Search from "./components/search/Search";
+import Post from "./components/post/Post";
+import Logo from "./components/layout/Logo";
+import Edit from "./components/edit/Edit";
 import ProtectedRoutes from "./context/ProtectedRoutes";
 
 function App() {
