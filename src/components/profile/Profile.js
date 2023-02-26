@@ -10,7 +10,7 @@ function Profile() {
   const [auth] = useContext(AuthContext);
   const history = useNavigate();
   if (!auth) {
-    history("/login");
+    history("/");
   }
   useDocumentTitle(name);
 

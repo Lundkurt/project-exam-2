@@ -23,7 +23,7 @@ function Post() {
   const [error, setError] = useState(false);
   const [post, setPost] = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const auth = useContext(AuthContext);
+  const [auth] = useContext(AuthContext);
   const http = useAxios();
   const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
@@ -91,7 +91,10 @@ function Post() {
       <Card.Footer>
         <Reaction post={post} />
         <div className="post-comment-user">
-          <Card.Img className="comment-avatar" src={auth[0]?.avatar} />
+          <Card.Img
+            className="comment-avatar"
+            src={auth?.avatar || placeholder}
+          />
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
               <Form.Control
@@ -115,7 +118,7 @@ function Post() {
             <div className="comments-list" key={comments.id}>
               <Card.Img
                 className="comment-avatar"
-                src={comments.author?.avatar}
+                src={comments.author?.avatar || placeholder}
               />
               <Card.Text>{comments.author.name}</Card.Text>
               <Card.Text>{comments.body}</Card.Text>

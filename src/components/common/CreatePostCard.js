@@ -86,7 +86,10 @@ function CreatePostCard({ post, isFollowing }) {
         <Collapse in={open}>
           <div id={post.id}>
             <div className="post-comment-user">
-              <Card.Img className="comment-avatar" src={auth?.avatar} />
+              <Card.Img
+                className="comment-avatar"
+                src={auth?.avatar || placeholder}
+              />
 
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3">
@@ -114,7 +117,7 @@ function CreatePostCard({ post, isFollowing }) {
                 <div className="comments-list" key={comment.id}>
                   <Card.Img
                     className="comment-avatar"
-                    src={comment.author?.avatar}
+                    src={comment.author?.avatar || placeholder}
                   />
                   <Card.Text>{comment.author.name}</Card.Text>
                   <Card.Text>{comment.body}</Card.Text>
