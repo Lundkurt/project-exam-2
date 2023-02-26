@@ -19,7 +19,7 @@ function CreatePostCard({ post, isFollowing }) {
   const [comments, setComments] = useState(post.comments);
   const [auth] = useContext(AuthContext);
   const http = useAxios();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const placeholder = avatar;
 
   async function onSubmit(data) {
@@ -33,6 +33,7 @@ function CreatePostCard({ post, isFollowing }) {
       const response = await http.post(`posts/${id}/comment`, dataSend);
       console.log(response.data);
       setComments([...comments, response.data]);
+      reset();
     } catch (error) {
       console.log(error);
     } finally {

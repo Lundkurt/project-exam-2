@@ -48,7 +48,7 @@ function Register() {
       const response = await axios.post(url, data);
       console.log("reponse", response.data);
       reset();
-      history("/login");
+      history("/");
     } catch (error) {
       console.log("error", error);
       setLoginError(error.toString());
@@ -87,7 +87,7 @@ function Register() {
             <span className="error">{errors.email.message}</span>
           )}
           <Form.Text id="emailHelp" muted>
-            Your email must end with @stuf.noroff.no or @noroff.no
+            Your email must end with @stud.noroff.no or @noroff.no
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="passwordForm.ControlInput1">
@@ -110,7 +110,7 @@ function Register() {
         </Button>
       </Form>
       <p className="p-less-margin">Already have an account?</p>
-      <a href="/login">Log in</a>
+      <a href="/">Log in</a>
     </Container>
   );
 }
