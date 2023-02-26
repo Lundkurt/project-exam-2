@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
 h1,
 h2,
 h3,
@@ -9,8 +11,9 @@ p {
 h1,
 h2,
 h3,
-h4 {
-  font-family: "Montserrat";
+h4,
+a {
+  font-family: "Montserrat", sans-serif;
 }
 
 .text-align-center {
